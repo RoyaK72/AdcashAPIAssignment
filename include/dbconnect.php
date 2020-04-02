@@ -18,7 +18,7 @@ class DbConnect {
      */
     function connect() {
         // Connecting to mysql database
-        $this->conn = new mysqli("localhost", "USERNAME", "PASSWORD", "adcashapi");
+        $this->conn = new mysqli("localhost", "root", "root", "adcashapi");
 
         // Check for database connection error
         if (mysqli_connect_errno()) {

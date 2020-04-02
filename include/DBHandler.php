@@ -61,9 +61,7 @@
 		        }
 	        }else{
 	        	return 1;
-	        }
-	    	
-	        
+	        }   
     	}
 
     	public function createproduct($productname, $categoryid){
