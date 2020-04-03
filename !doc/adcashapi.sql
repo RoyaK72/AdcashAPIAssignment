@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2020 at 12:18 PM
+-- Generation Time: Apr 03, 2020 at 11:29 AM
 -- Server version: 8.0.15
 -- PHP Version: 7.1.33
 
@@ -92,7 +92,26 @@ INSERT INTO `products` (`id`, `productname`, `categoryid`, `dateadded`, `ipadded
 (27, 'Cosmetics', 3, '2020-03-28 14:17:21', '::1', 'PostmanRuntime/7.24.0'),
 (28, 'Funeral Services', 4, '2020-03-28 14:15:30', '::1', 'PostmanRuntime/7.24.0'),
 (29, 'Encyclopedias', 4, '2020-03-28 14:15:38', '::1', 'PostmanRuntime/7.24.0'),
-(30, 'iPhone', 4, '2020-03-28 14:15:43', '::1', 'PostmanRuntime/7.24.0');
+(30, 'iPhone', 4, '2020-04-01 03:16:20', '::1', 'PostmanRuntime/7.24.0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `validapis`
+--
+
+CREATE TABLE `validapis` (
+  `id` int(11) NOT NULL,
+  `apikey` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `validapis`
+--
+
+INSERT INTO `validapis` (`id`, `apikey`) VALUES
+(1, 'n83eyewjr9e0iej9837yeg3hiwudujdp3e83ye'),
+(2, 'iruw8ryiur7tr8u4rui8378t23y4h234fy24y2');
 
 --
 -- Indexes for dumped tables
@@ -113,6 +132,12 @@ ALTER TABLE `products`
   ADD KEY `FK_categoryid` (`categoryid`);
 
 --
+-- Indexes for table `validapis`
+--
+ALTER TABLE `validapis`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -120,13 +145,19 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT for table `validapis`
+--
+ALTER TABLE `validapis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

@@ -12,7 +12,38 @@
 	$app->setBasePath("/AdcashAPI/category");
 	$app->addRoutingMiddleware();
 	$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+	//authentication
+	$auth = function ($request, $response, $next) {
+	    $headers = apache_request_headers();
+	    $res = array();
 
+	    // Verifying Authorization Header
+	    if (isset($headers['Authorization'])) {
+	        $db = new DbHandler();
+	        $apikey = $headers['Authorization'];
+
+	        if (!$db->isValidApiKey($apikey)) {
+	            
+	            $res["message"] = "Access Denied. Invalid Api key";
+	            return $response->withStatus(401)->withHeader('Content-Type', 'application/json')->withJson($res);
+	            $app->stop();
+	        } else {
+	            global $userid;
+	            $userid = $db->getUserId($apikey);
+	            $response = $next($request, $response);
+	            return $response;
+	        }
+	    } else {
+	        $res["message"] = "Api key is misssing";
+            $res = json_encode($res);
+            $response->getBody()->write($res);
+            // priniting the response in JSON encoded format with header and status
+            return $response
+			        ->withHeader('Content-Type', 'application/json')
+			        ->withStatus(400);
+	        $app->stop();
+	    }
+	};
 
 	//get method for catching a list of all categories
 	$app->get('/allcategories', function (Request $request, Response $response) {
@@ -86,7 +117,7 @@
         	// priniting the response in JSON encoded format with header and status
             return $response
 			        ->withHeader('Content-Type', 'application/json')
-			        ->withStatus(202);
+			        ->withStatus(400);
         }
 	});
 
@@ -137,7 +168,7 @@
         	// priniting the response in JSON encoded format with header and status
             return $response
 			        ->withHeader('Content-Type', 'application/json')
-			        ->withStatus(203);
+			        ->withStatus(400);
         }
 	});
 
@@ -175,7 +206,7 @@
         	// priniting the response in JSON encoded format with header and status
             return $response
 			        ->withHeader('Content-Type', 'application/json')
-			        ->withStatus(202);
+			        ->withStatus(400);
         }
 	});
 

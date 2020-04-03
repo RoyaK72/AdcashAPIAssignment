@@ -64,13 +64,6 @@ class ProductTest extends TestCase
 	            json_encode($created_product_array)
 	        );
 
-		}else if($response->getStatusCode() == 203){
-			$this->assertEquals(203, $response->getStatusCode());
-	    	$this->assertJsonStringEqualsJsonString(
-	            json_encode(['message' => 'Oops! An error occurred while creating new product!']),
-	            json_encode($created_product_array)
-	        );
-
 		}else{
 			$this->assertTrue(false);
 		}
@@ -111,13 +104,6 @@ class ProductTest extends TestCase
 	            json_encode($edited_product_array)
 	        );
 
-		}else if($response->getStatusCode() == 203){
-			$this->assertEquals(203, $response->getStatusCode());
-	    	$this->assertJsonStringEqualsJsonString(
-	            json_encode(['message' => 'Oops! An error occurred while editing product!']),
-	            json_encode($edited_product_array)
-	        );
-
 		}else{
 			$this->assertTrue(false);
 		}
@@ -145,13 +131,6 @@ class ProductTest extends TestCase
 			$this->assertEquals(201, $response->getStatusCode());
 	    	$this->assertJsonStringEqualsJsonString(
 	            json_encode(['message' => 'The product name already exists! Please enter another value for product name.']),
-	            json_encode($deleted_category_array)
-	        );
-
-		}else if($response->getStatusCode() == 202){
-			$this->assertEquals(202, $response->getStatusCode());
-	    	$this->assertJsonStringEqualsJsonString(
-	            json_encode(['message' => 'Oops! An error occurred while deleting the product!']),
 	            json_encode($deleted_category_array)
 	        );
 

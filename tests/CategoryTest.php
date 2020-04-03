@@ -56,13 +56,6 @@ class CategoryTest extends TestCase
 	            json_encode($created_category_array)
 	        );
 	    
-	    }else if($response->getStatusCode() == 202){
-	    	$this->assertEquals(202, $response->getStatusCode());
-	    	$this->assertJsonStringEqualsJsonString(
-	            json_encode(['message' => 'Oops! An error occurred while creating new category!']),
-	            json_encode($created_category_array)
-	        );
-	    
 	    }else{
 	    	$this->assertTrue(false);
 	    }
@@ -101,13 +94,6 @@ class CategoryTest extends TestCase
 	            json_encode($edited_category_array)
 	        );
 
-		}else if($response->getStatusCode() == 203){
-			$this->assertEquals(203, $response->getStatusCode());
-	    	$this->assertJsonStringEqualsJsonString(
-	            json_encode(['message' => 'Oops! An error occurred while editing category!']),
-	            json_encode($edited_category_array)
-	        );
-
 		}else{
 			$this->assertTrue(false);
 		}
@@ -135,13 +121,6 @@ class CategoryTest extends TestCase
 			$this->assertEquals(201, $response->getStatusCode());
 	    	$this->assertJsonStringEqualsJsonString(
 	            json_encode(['message' => 'The category does not exist! Please enter another value for category ID.']),
-	            json_encode($deleted_category_array)
-	        );
-
-		}else if($response->getStatusCode() == 202){
-			$this->assertEquals(202, $response->getStatusCode());
-	    	$this->assertJsonStringEqualsJsonString(
-	            json_encode(['message' => 'Oops! An error occurred while deleting the category!']),
 	            json_encode($deleted_category_array)
 	        );
 

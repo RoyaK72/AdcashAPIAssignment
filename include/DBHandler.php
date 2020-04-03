@@ -267,6 +267,20 @@
 	        	return 1;
 	        }
     	}
+
+    	public function isValidApiKey($apikey) {
+	        $api = $this->conn->prepare("SELECT id from validapis WHERE apikey = ?");
+	        $api->bind_param("s", $apikey);
+	        $api->execute();
+	        $api->store_result();
+	        $num_rows = $api->num_rows;
+	        $api->close();
+	    
+	        if($num_rows > 0)
+	            return TRUE;
+	        else
+	            return FALSE;      
+	    }
 	}
 
 	

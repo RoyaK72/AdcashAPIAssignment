@@ -30,7 +30,6 @@
 	            
 	            array_push($res["products"], $tmp); 
 	        }
-
 	        // encoding the $res array in JSON format
 	        $res = json_encode($res);
 	        $response->getBody()->write($res);
@@ -99,7 +98,7 @@
         	// priniting the response in JSON encoded format with header and status
             return $response
 			        ->withHeader('Content-Type', 'application/json')
-			        ->withStatus(203);
+			        ->withStatus(400);
         }
 	});
 
@@ -153,7 +152,7 @@
         	// priniting the response in JSON encoded format with header and status
             return $response
 			        ->withHeader('Content-Type', 'application/json')
-			        ->withStatus(203);
+			        ->withStatus(400);
         }
 	});
 
@@ -168,7 +167,7 @@
 
         if ($result != NULL){
         	if ($result == 1) {
-        		$res["message"] = "The product name already exists! Please enter another value for product name.";
+        		$res["message"] = "The product does not exist! Please enter another value for product ID.";
 	        	$res = json_encode($res);
 	        	$response->getBody()->write($res);
             	// priniting the response in JSON encoded format with header and status
@@ -191,7 +190,7 @@
         	// priniting the response in JSON encoded format with header and status
             return $response
 			        ->withHeader('Content-Type', 'application/json')
-			        ->withStatus(202);
+			        ->withStatus(400);
         }
 	});
 
